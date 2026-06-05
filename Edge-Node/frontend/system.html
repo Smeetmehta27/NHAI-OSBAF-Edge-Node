@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Status | NHAI OSBAF</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <style>
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { text-align: center; }
+        .value { font-size: 32px; font-weight: bold; margin-top: 15px; color: #38bdf8; }
+        .online { color: #22c55e; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>NHAI OSBAF Edge Node</div>
+        <a href="/">← Dashboard</a>
+    </div>
+    <div class="container">
+        <h1>System Status</h1>
+        <div class="grid">
+            <div class="card">
+                <h3>Database Status</h3>
+                <div class="value online">ONLINE</div>
+            </div>
+            <div class="card">
+                <h3>Authentication Engine</h3>
+                <div class="value online">ACTIVE</div>
+            </div>
+            <div class="card">
+                <h3>Offline Mode</h3>
+                <div class="value online">ENABLED</div>
+            </div>
+            <div class="card">
+                <h3>Total Users</h3>
+                <div id="users" class="value">0</div>
+            </div>
+            <div class="card">
+                <h3>Total Auth Logs</h3>
+                <div id="logs" class="value">0</div>
+            </div>
+            <div class="card">
+                <h3>Pending Sync</h3>
+                <div id="pending" class="value">0</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function loadStatus() {
+            const dashboard = await fetch("/dashboard");
+            const dash = await dashboard.json();
+            document.getElementById("users").innerText = dash.total_users;
+            document.getElementById("pending").innerText = dash.pending_sync;
+            
+            const logs = await fetch("/logs");
+            const logData = await logs.json();
+            document.getElementById("logs").innerText = logData.length;
+        }
+        loadStatus();
+    </script>
+</body>
+</html>

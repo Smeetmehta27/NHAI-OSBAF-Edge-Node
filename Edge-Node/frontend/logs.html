@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audit Logs | NHAI OSBAF</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div>NHAI OSBAF Edge Node</div>
+        <a href="/">← Dashboard</a>
+    </div>
+    <div class="container">
+        <h1>Edge Authentication Logs</h1>
+        <div class="card">
+            <table id="logsTable">
+                <thead>
+                    <tr><th>Log ID</th><th>Employee ID</th><th>AI Confidence</th><th>Timestamp</th><th>Sync Status</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        async function loadLogs() {
+            const res = await fetch("/logs-api");
+            const logs = await res.json();
+            const tbody = document.querySelector("#logsTable tbody");
+            logs.forEach(l => {
+                const badgeColor = l.sync_status === 'SYNCED' ? '#3b82f6' : '#facc15';
+                tbody.innerHTML += `<tr><td>#${l.id}</td><td>${l.user_id}</td><td>${(l.confidence*100).toFixed(2)}%</td><td>${l.timestamp}</td><td><span style="background:${badgeColor}; color:black; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px;">${l.sync_status}</span></td></tr>`;
+            });
+        }
+        loadLogs();
+    </script>
+</body>
+</html>

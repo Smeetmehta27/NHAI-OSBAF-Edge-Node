@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Datalake Integration</title>
+<link rel="stylesheet" href="/frontend/css/style.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+nav{
+background:#111827;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:40px;
+}
+
+.card{
+background:#1e293b;
+padding:25px;
+border-radius:15px;
+margin-bottom:25px;
+}
+
+pre{
+background:#111827;
+padding:20px;
+overflow:auto;
+border-radius:10px;
+}
+
+button{
+padding:12px 25px;
+background:#0284c7;
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>NHAI OSBAF</h2>
+
+<a href="/">Home</a>
+
+</nav>
+
+<div class="container">
+
+<h1>Datalake Integration Layer</h1>
+
+<br>
+
+<div class="card">
+
+<h3>Synchronization Pipeline</h3>
+
+<br>
+
+<p>
+
+Offline Authentication
+→ Audit Logs
+→ Sync Queue
+→ Export API
+→ Datalake 3.0
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Exported Records</h3>
+
+<br>
+
+<button onclick="loadRecords()">
+
+Load Export Data
+
+</button>
+
+<br><br>
+
+<pre id="output">
+
+No records loaded
+
+</pre>
+
+</div>
+
+</div>
+
+<script>
+
+async function loadRecords(){
+
+    const response =
+        await fetch(
+            "/export-auth-records"
+        );
+
+    const data =
+        await response.json();
+
+    document.getElementById(
+        "output"
+    ).innerText =
+        JSON.stringify(
+            data,
+            null,
+            4
+        );
+}
+
+</script>
+
+</body>
+
+</html>

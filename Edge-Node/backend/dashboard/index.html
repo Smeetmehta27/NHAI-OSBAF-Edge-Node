@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Offline Face Authentication Dashboard</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#f5f5f5;
+            margin:40px;
+        }
+
+        h1{
+            text-align:center;
+        }
+
+        .container{
+            display:flex;
+            gap:20px;
+            justify-content:center;
+            flex-wrap:wrap;
+        }
+
+        .card{
+
+            width:250px;
+
+            background:white;
+
+            padding:20px;
+
+            border-radius:10px;
+
+            box-shadow:0 2px 10px rgba(0,0,0,0.15);
+
+            text-align:center;
+        }
+
+        .value{
+            font-size:36px;
+            font-weight:bold;
+            margin-top:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>
+        Offline Secure Biometric Authentication Framework
+    </h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Total Users</h2>
+            <div class="value" id="users">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Total Authentications</h2>
+            <div class="value" id="auth">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Pending Sync</h2>
+            <div class="value" id="pending">0</div>
+        </div>
+
+        <div class="card">
+            <h2>Synced Records</h2>
+            <div class="value" id="synced">0</div>
+        </div>
+
+    </div>
+
+<script>
+
+async function loadDashboard(){
+
+    const response = await fetch(
+        "http://127.0.0.1:8000/dashboard"
+    );
+
+    const data = await response.json();
+
+    document.getElementById("users")
+        .innerText = data.total_users;
+
+    document.getElementById("auth")
+        .innerText = data.total_authentications;
+
+    document.getElementById("pending")
+        .innerText = data.pending_sync;
+
+    document.getElementById("synced")
+        .innerText = data.synced_records;
+}
+
+loadDashboard();
+
+setInterval(
+    loadDashboard,
+    3000
+);
+
+</script>
+
+</body>
+
+</html>

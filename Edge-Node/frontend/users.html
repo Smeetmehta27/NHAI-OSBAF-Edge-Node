@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management | NHAI OSBAF</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div>NHAI OSBAF Edge Node</div>
+        <a href="/">← Dashboard</a>
+    </div>
+    <div class="container">
+        <h1>Enrolled Personnel</h1>
+        <div class="card">
+            <table id="usersTable">
+                <thead>
+                    <tr><th>Employee ID</th><th>Name</th><th>Auth Count</th><th>Last Active</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        async function loadUsers() {
+            const res = await fetch("/users");
+            const users = await res.json();
+            const tbody = document.querySelector("#usersTable tbody");
+            users.forEach(u => {
+                tbody.innerHTML += `<tr><td>${u.user_id}</td><td>${u.name}</td><td>${u.authentication_count}</td><td>${u.last_authenticated || 'Never'}</td></tr>`;
+            });
+        }
+        loadUsers();
+    </script>
+</body>
+</html>

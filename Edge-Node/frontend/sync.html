@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Sync Center | NHAI OSBAF</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <style>
+        .stats-container { display: flex; justify-content: center; gap: 20px; margin: 30px; flex-wrap: wrap; }
+        .stat-card { background: #1e293b; border: 1px solid #38bdf8; padding: 20px; border-radius: 12px; width: 220px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
+        .stat-card h3 { color: #94a3b8; margin: 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;}
+        .stat-card h2 { color: #facc15; margin: 10px 0 0 0; font-size: 48px;}
+        .btn-large { padding: 18px 40px; background: #0284c7; border: none; border-radius: 12px; color: white; cursor: pointer; font-size: 20px; font-weight: bold; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.3);}
+        .btn-large:hover { background: #0369a1; transform: translateY(-2px); }
+        .btn-large:disabled { background: #475569; cursor: not-allowed; transform: none; box-shadow: none; color: #94a3b8; }
+        .terminal { margin: 30px auto; width: 90%; max-width: 800px; height: 250px; background: #000; border: 1px solid #334155; border-radius: 8px; text-align: left; padding: 15px; font-family: 'Courier New', Courier, monospace; overflow-y: auto; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
+        .log-line { color: #22c55e; margin-bottom: 5px; font-size: 14px; line-height: 1.4; }
+        .log-time { color: #64748b; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>NHAI OSBAF Edge Node</div>
+        <a href="/">← Return to Dashboard</a>
+    </div>
+
+    <div class="container" style="text-align: center;">
+        <h1>Edge-to-Cloud Sync Center</h1>
+        <p style="color: #cbd5e1; margin-bottom: 20px;">Datalake 3.0 Node ID: <strong style="color: #38bdf8;">NODE-7X-MOBILE</strong></p>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Offline Logs Pending</h3>
+                <h2 id="pendingCount">0</h2>
+            </div>
+            <div class="stat-card">
+                <h3 style="color: #22c55e;">AWS Synced & Purged</h3>
+                <h2 id="syncedCount" style="color: #22c55e;">0</h2>
+            </div>
+        </div>
+
+        <button id="syncBtn" class="btn-large" disabled>Simulate Network Restore</button>
+
+        <div class="terminal" id="logArea">
+            <div class="log-line"><span class="log-time">[SYSTEM]</span> Ready. Monitoring hardware network state...</div>
+        </div>
+    </div>
+
+    <script src="/frontend/js/sync.js?v=3"></script>
+</body>
+</html>

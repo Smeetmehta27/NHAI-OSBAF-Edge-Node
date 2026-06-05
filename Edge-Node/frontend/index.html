@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHAI OSBAF | Home</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <style>
+        .hero { text-align: center; padding: 50px 20px; }
+        .hero h1 { font-size: 38px; color: #38bdf8; margin-bottom: 15px; }
+        .hero p { font-size: 18px; color: #cbd5e1; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .card { text-align: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+        .card h3 { margin-bottom: 15px; color: #f8fafc; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>NHAI OSBAF Edge Node</div>
+    </div>
+    <div class="container">
+        <div class="hero">
+            <h1>Offline Secure Biometric Authentication</h1>
+            <p>Designed for Datalake 3.0 Operations in Zero-Network Zones</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Operations Dashboard</h3>
+                <a href="/dashboard-page" class="btn">Open App</a>
+            </div>
+            <div class="card">
+                <h3>Enroll Personnel</h3>
+                <a href="/register-page" class="btn">Open App</a>
+            </div>
+            <div class="card">
+                <h3>Biometric Auth</h3>
+                <a href="/authenticate-page" class="btn">Open App</a>
+            </div>
+            <div class="card">
+                <h3>AWS Sync Center</h3>
+                <a href="/sync-page" class="btn">Open App</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

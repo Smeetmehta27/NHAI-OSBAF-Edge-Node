@@ -1,0 +1,23 @@
+# Python / Edge Node
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+*.bak
+_deprecated/
+tests/
+
+# React Native / Mobile App
+node_modules/
+.expo/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.apk
+*.aab
+
+# OS Files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biometric Auth | OSBAF</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <style>
+        .scanner-container { position: relative; width: 100%; max-width: 400px; height: 400px; margin: 20px auto; border-radius: 50%; overflow: hidden; border: 4px solid #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+        video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+        .overlay-target { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 40%, rgba(15, 23, 42, 0.8) 70%); }
+        #statusMessage { font-size: 20px; font-weight: bold; color: #facc15; margin: 20px; min-height: 30px; }
+        .result-card { display: none; background: #1e293b; padding: 20px; border-radius: 12px; border: 2px solid #22c55e; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>NHAI OSBAF Edge Node</div>
+        <a href="/">← Dashboard</a>
+    </div>
+    <div class="container" style="text-align: center;">
+        <div class="scanner-container">
+            <video id="video" autoplay playsinline muted></video>
+            <div class="overlay-target"></div>
+            <canvas id="canvas" style="display:none;"></canvas>
+        </div>
+        <div id="statusMessage">Requesting Camera Access...</div>
+        <div class="result-card" id="resultCard">
+            <h2 style="color: #22c55e; margin-top: 0;">ACCESS GRANTED</h2>
+            <p id="authName" style="font-size: 18px; font-weight: bold;"></p>
+            <p id="authConfidence" style="color: #94a3b8;"></p>
+        </div>
+        <button id="startAuthBtn" class="btn" style="width: 250px; font-size: 18px;" disabled>Initiate Scan</button>
+    </div>
+    
+    <script src="/frontend/js/auth_v3.js"></script>
+</body>
+</html>
